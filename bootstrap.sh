@@ -8,7 +8,7 @@ if ["${authentication}" == "Username:Password" ]
 then
 	password=$4
 	export SSHPASS=$password
-	sshpass -e ssh-copy -i ~/.ssh/bootstrap "${username}"@"${ip}"
+	sshpass -e ssh-copy-id -i ~/.ssh/bootstrap "${username}"@"${ip}"
 	cp ~/.ssh/bootstrap /tmp/bootstrap_key
 else if ["${authentication}" == "Username:SSH Key" ]
 	key=$4
