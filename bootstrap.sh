@@ -14,16 +14,16 @@ then
 	echo $password
 	export SSHPASS=$password
 	sshpass -e ssh-copy-id -i /opt/jenkinsfiles/bootstrap "${username}"@"${ip}"
-	cp /opt/jenkinsfiles/bootstrap /opt/jenkinsfiles/tmp/bootstrap_key
+	cp /opt/jenkinsfiles/bootstrap ./bootstrap_key
 elif [ "${authentication}" == "Username:SSH Key" ]
 then
 	key=$4
 	echo $key
-	echo $key > /opt/jenkinsfiles/tmp/bootstrap_key
-	chmod 600 /opt/jenkinsfiles/tmp/bootstrap_key
+	echo $key > ./bootstrap_key
+	chmod 600 ./bootstrap_key
 fi
 
-ssh -i /opt/jenkinsfiles/tmp/bootstrap_key "${username}"@"${ip}" hostname
+ssh -i ./bootstrap_key "${username}"@"${ip}" hostname
 
 if [ "$?" == 0 ]
 then
