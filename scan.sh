@@ -5,26 +5,16 @@
 # Add the list of supported Webserver to be identified in this server.
 services_to_check=(httpd tomcat)
 
-echo -----------------------------------------------------
-echo "                     SCANNING"
-echo -----------------------------------------------------
-
 result="{"
-
 for service in "${services_to_check[@]}"
 do
-echo "Checking for" $service
   if [ "$(systemctl show -p SubState $service| cut -d"=" -f2)" == "running" ]
   then
-    echo $service is running
-    result=$result"$service:true,"
-    setup=$setup" $service"
+    result=$result\""$service\":\"true\","
   else
-    result=$result"$service:false,"
-    echo $service is not running
+    result=$result\""$service\":\"false\","
   fi
 done
-result=$result"status:completed}"
-echo Setup will continue for below web servers.
-echo $setup
-echo $result > ./result.json
+result=$result"\"status\":\"completed\" }"
+
+echo $result
