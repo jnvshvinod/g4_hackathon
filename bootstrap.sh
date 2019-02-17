@@ -4,7 +4,9 @@ ip=$1
 authentication=$2
 username=$3
 
+# Clean up old keys
 rm -rf /root/.ssh/known_hosts
+rm -rf /opt/jenkinsfiles/tmp/bootstrap_key_${ip}
 
 echo "Attempting ssh connection to "${username}@${ip}
 
