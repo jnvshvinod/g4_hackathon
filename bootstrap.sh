@@ -4,7 +4,7 @@ ip=$1
 authentication=$2
 username=$3
 
-rm -rf ~/.ssh/known_hosts
+rm -rf /root/.ssh/known_hosts
 
 echo "Attempting ssh connection to "${username}@${ip}
 
