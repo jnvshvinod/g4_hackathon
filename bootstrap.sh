@@ -24,7 +24,7 @@ then
 	chmod 600 /opt/jenkinsfiles/tmp/bootstrap_key_${ip}
 fi
 
-ssh -i /opt/jenkinsfiles/tmp/bootstrap_key_${ip} "${username}"@"${ip}" hostname
+ssh -i /opt/jenkinsfiles/tmp/bootstrap_key_${ip} -o StrictHostKeyChecking=no "${username}"@"${ip}" hostname
 
 if [ "$?" == 0 ]
 then
