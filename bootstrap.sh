@@ -1,4 +1,4 @@
-!#/bin/sh
+#!/bin/sh
 
 ip=$1
 authentication=$2
