@@ -6,7 +6,7 @@ username=$3
 
 rm -rf ~/.ssh/known_hosts
 
-echo "Attempting ssh connection to ${username}@${ip}
+echo "Attempting ssh connection to "${username}@${ip}
 
 if [ "${authentication}" == "Username:Password" ]
 then
