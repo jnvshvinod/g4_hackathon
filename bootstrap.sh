@@ -19,9 +19,8 @@ then
 elif [ "${authentication}" == "Username:SSH Key" ]
 then
 	cp SSH_Key /opt/jenkinsfiles/tmp/bootstrap_key_${ip}
-	chmod 600 /opt/jenkinsfiles/tmp/bootstrap_key_${ip}
 fi
-
+chmod 600 /opt/jenkinsfiles/tmp/bootstrap_key_${ip}
 ssh -i /opt/jenkinsfiles/tmp/bootstrap_key_${ip} -o StrictHostKeyChecking=no "${username}"@"${ip}" hostname
 
 if [ "$?" == 0 ]
