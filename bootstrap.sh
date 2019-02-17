@@ -10,7 +10,7 @@ then
 	export SSHPASS=$password
 	sshpass -e ssh-copy-id -i ~/.ssh/bootstrap "${username}"@"${ip}"
 	cp ~/.ssh/bootstrap /tmp/bootstrap_key
-else if ["${authentication}" == "Username:SSH Key" ]
+elif ["${authentication}" == "Username:SSH Key" ]
 	key=$4
 	echo $key > /tmp/bootstrap_key
 	chmod 600 /tmp/bootstrap_key
