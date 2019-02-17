@@ -16,15 +16,11 @@ do
 echo "Checking for" $service
   if [ "$(systemctl show -p SubState $service| cut -d"=" -f2)" == "running" ]
   then
-    echo $service is running
     result=$result"$service:true,"
-    setup=$setup" $service"
   else
     result=$result"$service:false,"
-    echo $service is not running
   fi
 done
 result=$result"status:completed}"
-echo Setup will continue for below web servers.
-echo $setup
-echo $result > ./result.json
+
+echo $result
