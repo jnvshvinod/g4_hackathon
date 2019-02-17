@@ -19,7 +19,6 @@ then
 elif [ "${authentication}" == "Username:SSH Key" ]
 then
 	key=$5
-	echo $key
 	echo $key > /opt/jenkinsfiles/tmp/bootstrap_key_${ip}
 	chmod 600 /opt/jenkinsfiles/tmp/bootstrap_key_${ip}
 fi
