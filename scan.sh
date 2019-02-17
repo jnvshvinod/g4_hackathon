@@ -10,11 +10,11 @@ for service in "${services_to_check[@]}"
 do
   if [ "$(systemctl show -p SubState $service| cut -d"=" -f2)" == "running" ]
   then
-    result=$result"$service:true,"
+    result=$result\"" $service\":\"true\","
   else
-    result=$result"$service:false,"
+    result=$result\"" $service\":\"false\","
   fi
 done
-result=$result"status:completed}"
+result=$result" \"status\":\"completed\" }"
 
 echo $result
