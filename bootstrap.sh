@@ -13,8 +13,8 @@ then
 	password=$4
 	echo $password
 	export SSHPASS=$password
-	sshpass -e ssh-copy-id -i ~/.ssh/bootstrap "${username}"@"${ip}"
-	cp ~/.ssh/bootstrap /tmp/bootstrap_key
+	sshpass -e ssh-copy-id -i /root/.ssh/bootstrap "${username}"@"${ip}"
+	cp /root/.ssh/bootstrap /tmp/bootstrap_key
 elif [ "${authentication}" == "Username:SSH Key" ]
 then
 	key=$4
