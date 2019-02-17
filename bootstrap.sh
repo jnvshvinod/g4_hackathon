@@ -12,7 +12,7 @@ if [ "${authentication}" == "Username:Password" ]
 then
 	password=$4
 	export SSHPASS=$password
-	sshpass -e ssh-copy-id -f -i /opt/jenkinsfiles/bootstrap "${username}"@"${ip}"
+	sshpass -e ssh-copy-id -f -i /opt/jenkinsfiles/bootstrap -o StrictHostKeyChecking=no "${username}"@"${ip}"
 	cp /opt/jenkinsfiles/bootstrap /opt/jenkinsfiles/tmp/bootstrap_key_${ip}
 elif [ "${authentication}" == "Username:SSH Key" ]
 then
