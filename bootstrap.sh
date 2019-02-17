@@ -4,14 +4,13 @@ ip=$1
 authentication=$2
 username=$3
 
-echo ${ip}
-echo ${authentication}
-echo ${username}
+rm -rf ~/.ssh/known_hosts
+
+echo "Attempting ssh connection to ${username}@${ip}
 
 if [ "${authentication}" == "Username:Password" ]
 then
 	password=$4
-	echo $password
 	export SSHPASS=$password
 	sshpass -e ssh-copy-id -f -i /opt/jenkinsfiles/bootstrap "${username}"@"${ip}"
 	cp /opt/jenkinsfiles/bootstrap /opt/jenkinsfiles/tmp/bootstrap_key_${ip}
