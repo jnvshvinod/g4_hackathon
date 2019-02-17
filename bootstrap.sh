@@ -4,6 +4,10 @@ ip=$1
 authentication=$2
 username=$3
 
+echo ${ip}
+echo ${authentication}
+echo ${username}
+
 if ["${authentication}" == "Username:Password" ]
 then
 	password=$4
@@ -11,6 +15,7 @@ then
 	sshpass -e ssh-copy-id -i ~/.ssh/bootstrap "${username}"@"${ip}"
 	cp ~/.ssh/bootstrap /tmp/bootstrap_key
 elif ["${authentication}" == "Username:SSH Key" ]
+then
 	key=$4
 	echo $key > /tmp/bootstrap_key
 	chmod 600 /tmp/bootstrap_key
