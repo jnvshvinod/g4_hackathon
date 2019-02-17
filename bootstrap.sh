@@ -18,7 +18,7 @@ then
 	cp /opt/jenkinsfiles/bootstrap /opt/jenkinsfiles/tmp/bootstrap_key_${ip}
 elif [ "${authentication}" == "Username:SSH Key" ]
 then
-	key=$4
+	key=$5
 	echo $key
 	echo $key > /opt/jenkinsfiles/tmp/bootstrap_key_${ip}
 	chmod 600 /opt/jenkinsfiles/tmp/bootstrap_key_${ip}
