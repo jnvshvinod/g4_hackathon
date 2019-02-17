@@ -9,4 +9,4 @@ documentRoot=$(cat /etc/httpd/conf/httpd.conf | grep '^\s*DocumentRoot'|tr -d " 
 
 port=$(cat $conffile | grep -e '^\s*Listen'|tr -d " "|tr -d "Listen"|head -1)
 
-echo "{ \"conffile\":\"${conffile}\",\"documentRoot\":\"${documentRoot}\",\"port\":\"${port}\"}
+echo "{ \"conffile\":\"${conffile}\",\"documentRoot\":\"${documentRoot}\",\"port\":\"${port}\"}"
