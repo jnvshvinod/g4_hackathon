@@ -9,7 +9,7 @@ echo -----------------------------------------------------
 echo "                     SCANNING"
 echo -----------------------------------------------------
 
-result="{\n"
+result="{"
 
 for service in "${services_to_check[@]}"
 do
@@ -17,16 +17,14 @@ echo "Checking for" $service
   if [ "$(systemctl show -p SubState $service| cut -d"=" -f2)" == "running" ]
   then
     echo $service is running
-    result=$result+" $service:true,\n" 
+    result=$result"$service:true,"
     setup=$setup" $service"
   else
-    result=$result+" $service:false,\n" 
+    result=$result"$service:false,"
     echo $service is not running
   fi
 done
-result=$result+" $status:completed\n}"
-echo $result
+result=$result"status:completed}"
 echo Setup will continue for below web servers.
 echo $setup
-
-
+echo $result > ./result.json
