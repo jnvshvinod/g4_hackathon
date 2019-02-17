@@ -8,13 +8,13 @@ echo ${ip}
 echo ${authentication}
 echo ${username}
 
-if ["${authentication}" == "Username:Password" ]
+if [ "${authentication}" == "Username:Password" ]
 then
 	password=$4
 	export SSHPASS=$password
 	sshpass -e ssh-copy-id -i ~/.ssh/bootstrap "${username}"@"${ip}"
 	cp ~/.ssh/bootstrap /tmp/bootstrap_key
-elif ["${authentication}" == "Username:SSH Key" ]
+elif [ "${authentication}" == "Username:SSH Key" ]
 then
 	key=$4
 	echo $key > /tmp/bootstrap_key
