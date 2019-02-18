@@ -9,17 +9,18 @@ ssh -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking
 
 cat ./httpd/pull_result.json
 
-conffile=$(cat ./pull_result.json | jq .conffile| tr -d '"')
-documentRoot=$(cat ./pull_result.json | jq .documentRoot| tr -d '"')
+conffile=$(cat ./httpd/pull_result.json | jq .conffile| tr -d '"')
+documentRoot=$(cat ./httpd/pull_result.json | jq .documentRoot| tr -d '"')
 
-scp -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP}:${conffile} ./conffile
-scp -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP}:${documentRoot}/* ./documentRoot/
+scp -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP}:${conffile} ./httpd/conffile
+mkdir ./httpd/documentRoot
+scp -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP}:${documentRoot}/* ./httpd/documentRoot/
 
 echo -----------------------------------------------------
 echo "        Preparing Docker Image"
 echo -----------------------------------------------------
 
-port=$(cat ./pull_result.json | jq .port| tr -d '"')
+port=$(cat ./httpd/pull_result.json | jq .port| tr -d '"')
 sed -i 's:port:'"$port"':g' ./httpd/Dockerfile
 
 cat ./httpd/Dockerfile
