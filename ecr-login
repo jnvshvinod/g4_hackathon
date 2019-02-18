@@ -9,7 +9,7 @@ export AWS_SECRET_ACCESS_KEY=$2
 
 yum install -y awscli
 
-aws ecr get-login --region=$3
+$(aws ecr get-login --region=$3)
 
 unset AWS_ACCESS_KEY_ID
 unset AWS_SECRET_ACCESS_KEY
