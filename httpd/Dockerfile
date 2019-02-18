@@ -6,7 +6,7 @@ RUN yum -y install httpd
 
 COPY ./conffile /etc/httpd/conf/
 
-COPY ./documentroot/*  /var/www/html/
+COPY ./documentRoot/*  /var/www/html/
 
 CMD ["-D", "FOREGROUND"]
 
