@@ -13,7 +13,10 @@ resource "aws_instance" "dest_instance" {
   user_data = <<-EOF
                 #!/bin/bash
                 yum install -y aws*
+                sleep 15
                 yum install -y docker
+                sleep 15
+                sudo systemctl start docker
                 EOF
   tags {
     Name = "dest-server"
