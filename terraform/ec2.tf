@@ -17,6 +17,7 @@ resource "aws_instance" "dest_instance" {
                 yum install -y docker
                 sleep 15
                 sudo systemctl start docker
+                sudo systemctl enable docker
                 EOF
   tags {
     Name = "dest-server"
