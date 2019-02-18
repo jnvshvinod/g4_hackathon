@@ -1,0 +1,60 @@
+---
+- name: Deploy with Docker
+  hosts: all
+  gather_facts: true
+  become: yes
+  tasks:
+    - name: Install epel
+      package:
+        name: epel-release
+        state: present
+
+    - name: Install docker
+      package:
+        name: docker
+        state: present
+
+    - name: Install python
+      package:
+        name: python
+        state: present
+
+    - name: Install pip
+      package:
+        name: python2-pip
+        state: present
+
+    - name: pip packages
+      pip:
+        name: docker-py
+
+    - name: Reload systemd
+      systemd:
+        name: docker
+        state: reloaded
+
+    - name: Start docker.service
+      service:
+        name: docker.service
+        state: started
+
+    - name: Copy ecr-login script
+      copy:
+        src: ../ecr-login
+        dest: /tmp
+        mode: 0755
+
+    - name: execute script
+      command: /tmp/ecr-login "{{ accesskey }}" "{{ secretkey }}" "{{ region }}"
+
+    - name: Run docker image
+      docker_container:
+        name: "{{ name }}"
+        image: "{{ image }}"
+        pull: true
+        state: started
+        ports:
+         - "{{ ports }}"
+
+    - name: Docker logout
+      command: docker logout "{{ ecr_url  }}"
