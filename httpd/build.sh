@@ -26,4 +26,4 @@ port=$(cat ./httpd/pull_result.json | jq .port| tr -d '"')
 sed -i 's:port:'"$port"':g' ./httpd/Dockerfile
 
 cat ./httpd/Dockerfile
-docker build ./httpd/Dockerfile -t httpd_${BUILD_NUMBER}
+docker build ./httpd/ -t httpd_${BUILD_NUMBER}
