@@ -10,17 +10,17 @@ ssh -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking
 cat ./httpd/pull_result.json
 
 conffile=$(cat ./pull_result.json | jq .conffile| tr -d '"')
-documentroot=$(cat ./pull_result.json | jq .documentroot| tr -d '"')
+documentRoot=$(cat ./pull_result.json | jq .documentRoot| tr -d '"')
 
 scp -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP}:${conffile} ./conffile
-scp -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP}:${documentroot}/* ./documentroot/
+scp -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP}:${documentRoot}/* ./documentRoot/
 
 echo -----------------------------------------------------
 echo "        Preparing Docker Image"
 echo -----------------------------------------------------
 
 port=$(cat ./pull_result.json | jq .port| tr -d '"')
-sed -i 's:port:'"$port"':g' Dockerfile
+sed -i 's:port:'"$port"':g' ./httpd/Dockerfile
 
 cat ./httpd/Dockerfile
-docker build . -t httpd_${BUILD_NUMBER}
+docker build ./httpd/Dockerfile -t httpd_${BUILD_NUMBER}
