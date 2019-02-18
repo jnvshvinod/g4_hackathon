@@ -10,10 +10,6 @@ COPY ./documentRoot/*  /var/www/html/
 
 CMD ["-D", "FOREGROUND"]
 
-RUN systemctl start httpd
-
-RUN systemctl enable httpd
-
 ENTRYPOINT ["/usr/sbin/httpd"]
 
 EXPOSE port
