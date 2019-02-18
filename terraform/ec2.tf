@@ -3,6 +3,7 @@ resource "aws_instance" "dest_instance" {
   instance_type               = "t2.medium"
   key_name                    = "G4"
   subnet_id                   = "subnet-2a5b0e42"
+  region                      = "ap-south-1"
   
   root_block_device {
     volume_type           = "gp2"
