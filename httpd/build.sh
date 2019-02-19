@@ -31,7 +31,7 @@ docker build ./httpd/ -t ${ECR_URL}/g4_hackathon/httpd:${VERSION}
 
 ./ecr-login ${AWS_ACCESS_KEY_ID} ${AWS_SECRET_ACCESS_KEY} ${ECR_REGION}
 
-docker push ${ECR_URL}/g4_hackathon/httpd:${VERSION}
+docker push ${ECR_URL}/g4_hackathon/httpd -t ${VERSION}
 
 docker logout https://${ECR_URL}
 
