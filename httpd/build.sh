@@ -28,7 +28,7 @@ sed -i 's:port:'"$port"':g' ./httpd/Dockerfile
 cat ./httpd/Dockerfile
 docker build ./httpd/ -t ${ECR_URL}/g4_hackathon/httpd:${VERSION}
 
-./ecr-login ${ECR_ACCESS_KEY} ${ECR_SECRET_KEY} ${ECR_REGION}
+./ecr-login ${AWS_ACCESS_KEY_ID} ${AWS_SECRET_ACCESS_KEY} ${ECR_REGION}
 
 docker push ${ECR_URL}/g4_hackathon/httpd:${VERSION}
 
