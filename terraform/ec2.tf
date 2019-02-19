@@ -22,8 +22,8 @@ resource "aws_instance" "dest_instance" {
   tags {
     Name = "destination-webserver"
   }
-}
 
-provisioner "local-exec" {
-command = "echo ${aws_instance.web.public_ip} > /opt/jenkinsfiles/tmp/new_instance_ip"
+  provisioner "local-exec" {
+  command = "echo ${aws_instance.web.public_ip} > /opt/jenkinsfiles/tmp/new_instance_ip"
+  }
 }
