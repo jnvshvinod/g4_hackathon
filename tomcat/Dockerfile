@@ -2,14 +2,10 @@ FROM centos:latest
 
 MAINTAINER G4
 
-RUN yum -y install httpd
+RUN yum -y install tomcat8
 
-COPY httpd.conf /etc/httpd/conf/
+COPY server.xml /usr/share/tomcat/conf/server.xml
 
-COPY index.html  /var/www/html
+CMD ["catalina.sh", "run"]
 
-CMD ["-D", "FOREGROUND"]
-
-ENTRYPOINT ["/usr/sbin/httpd"]
-
-EXPOSE 80
+EXPOSE 8080
