@@ -1,13 +1,13 @@
 resource "aws_instance" "dest_instance" {
   ami                         = "ami-02e60be79e78fef21"
-  instance_type               = "t2.medium"
+  instance_type               = "t2.small"
   key_name                    = "G4"
   subnet_id                   = "subnet-2a5b0e42"
   vpc_security_group_ids      = ["sg-0b46806a9a699bbd7"]
   
   root_block_device {
     volume_type           = "gp2"
-    volume_size           = "30"
+    volume_size           = "10"
   }
   
   user_data = <<-EOF
@@ -20,6 +20,6 @@ resource "aws_instance" "dest_instance" {
                 sudo systemctl enable docker
                 EOF
   tags {
-    Name = "dest-server"
+    Name = "destination-webserver"
   }
 }
