@@ -18,7 +18,7 @@ then
 	cp /opt/jenkinsfiles/bootstrap /opt/jenkinsfiles/tmp/bootstrap_key_${ip}
 elif [ "${authentication}" == "Username:SSH Key" ]
 then
-	cp SSH_Key /opt/jenkinsfiles/tmp/bootstrap_key_${ip}
+	cp /opt/jenkinsfiles/tmp/SSH_Key /opt/jenkinsfiles/tmp/bootstrap_key_${ip}
 fi
 chmod 600 /opt/jenkinsfiles/tmp/bootstrap_key_${ip}
 ssh -i /opt/jenkinsfiles/tmp/bootstrap_key_${ip} -o StrictHostKeyChecking=no "${username}"@"${ip}" hostname
