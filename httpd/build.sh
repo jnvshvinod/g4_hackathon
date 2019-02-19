@@ -27,11 +27,12 @@ sed -i 's:port:'"$port"':g' ./httpd/Dockerfile
 sed -i 's:destination_documentRoot:'"$documentRoot"':g' ./httpd/Dockerfile
 
 cat ./httpd/Dockerfile
-docker build ./httpd/ -t ${ECR_URL}/g4_hackathon/httpd:${VERSION}
-
 ./ecr-login ${AWS_ACCESS_KEY_ID} ${AWS_SECRET_ACCESS_KEY} ${ECR_REGION}
+docker build ./httpd/ -t g4_hackathon/httpd:${VERSION}
 
-docker push ${ECR_URL}/g4_hackathon/httpd -t ${VERSION}
+docker tag g4_hackathon/httpd:${VERSION} ${ECR_URL}/g4_hackathon/httpd:${VERSION}
+
+docker push ${ECR_URL}/g4_hackathon/httpd:${VERSION}
 
 docker logout https://${ECR_URL}
 
