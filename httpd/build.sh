@@ -24,6 +24,7 @@ echo -----------------------------------------------------
 
 port=$(cat ./httpd/pull_result.json | jq .port| tr -d '"')
 sed -i 's:port:'"$port"':g' ./httpd/Dockerfile
+sed -i 's:destination_documentRoot:'"$documentRoot"':g' ./httpd/Dockerfile
 
 cat ./httpd/Dockerfile
 docker build ./httpd/ -t ${ECR_URL}/g4_hackathon/httpd:${VERSION}
