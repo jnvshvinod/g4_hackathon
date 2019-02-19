@@ -28,7 +28,7 @@ sed -i 's:destination_documentRoot:'"$documentRoot"':g' ./httpd/Dockerfile
 
 cat ./httpd/Dockerfile
 ./ecr-login ${AWS_ACCESS_KEY_ID} ${AWS_SECRET_ACCESS_KEY} ${ECR_REGION}
-docker build ./httpd/ -t ${ECR_URL}g4_hackathon/httpd:${VERSION}
+docker build ./httpd/ -t ${ECR_URL}/g4_hackathon/httpd:${VERSION}
 
 docker push ${ECR_URL}/g4_hackathon/httpd:${VERSION}
 
