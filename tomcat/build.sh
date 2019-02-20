@@ -1,12 +1,14 @@
 #!/bin/sh
 
+echo "username"
+echo ${Username}
+echo ${Server_IP}
+
 echo -----------------------------------------------------
 echo "        Pulling Configurations and Artifacts"
 echo -----------------------------------------------------
 
-echo "username"
-echo ${Username}
-echo ${Server_IP}
+
 scp -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking=no ./tomcat/pull.sh ${Username}@${Server_IP}:/tmp/tomcat_pull.sh
 ssh -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP} /tmp/tomcat_pull.sh > ./tomcat/pull_result.json
 
