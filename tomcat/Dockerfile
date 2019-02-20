@@ -6,6 +6,8 @@ RUN yum -y install tomcat8
 
 COPY server.xml /usr/share/tomcat/conf/server.xml
 
-ENTRYPOINT ["/usr/libexec/tomcat/server start"]
+COPY ./webapps/* /var/lib/tomcat/webapps/
 
-EXPOSE 8080
+ENTRYPOINT ["/usr/libexec/tomcat/server", "start"]
+
+EXPOSE port
