@@ -24,6 +24,9 @@ scp -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking
 
 webapp=$(cat ./tomcat/pull_result.json | jq .webapp| tr -d '"')
 
+echo "webapp is "
+echo $webapp
+
 mkdir -p ./tomcat/webapps
 
 rm -rf ./tomcat/webapps/
