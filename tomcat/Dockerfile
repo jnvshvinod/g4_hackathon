@@ -2,7 +2,7 @@ FROM centos:latest
 
 MAINTAINER G4
 
-RUN yum -y install tomcat8
+RUN yum -y install tomcat
 
 COPY ./server.xml /usr/share/tomcat/conf/
 
