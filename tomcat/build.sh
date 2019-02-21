@@ -48,7 +48,7 @@ cat ./tomcat/Dockerfile
 #docker build ./tomcat/ -t tomcat:${VERSION}
 docker build ./tomcat/ -t ${ECR_URL}/g4_hackathon/tomcat:${VERSION}
 
-./ecr-login ${ECR_ACCESS_KEY} ${ECR_SECRET_KEY} ${ECR_REGION}
+./ecr-login ${AWS_ACCESS_KEY_ID} ${AWS_SECRET_ACCESS_KEY} ${ECR_REGION}
 
 echo "keys are"
 
