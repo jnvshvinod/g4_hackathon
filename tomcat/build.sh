@@ -16,6 +16,9 @@ cat ./tomcat/pull_result.json
 
 conffile=$(cat ./tomcat/pull_result.json | jq .conffile| tr -d '"')
 
+echo "conffile is" 
+echo $conffile
+
 rm -rf ./tomcat/conffile
 scp -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP}:${conffile} ./tomcat/conffile
 
