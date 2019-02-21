@@ -45,7 +45,8 @@ cat ./tomcat/Dockerfile
 
 ./ecr-login ${ECR_ACCESS_KEY} ${ECR_SECRET_KEY} ${ECR_REGION}
 
-docker build ./tomcat/ -t tomcat:${VERSION}
+#docker build ./tomcat/ -t tomcat:${VERSION}
+docker build ./tomcat/ -t ${ECR_URL}/g4_hackathon/tomcat:${VERSION}
 
 #./ecr-login ${ECR_ACCESS_KEY} ${ECR_SECRET_KEY} ${ECR_REGION}
 
