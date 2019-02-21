@@ -13,7 +13,7 @@ conffile=$(cat ./httpd/pull_result.json | jq .conffile| tr -d '"')
 documentRoot=$(cat ./httpd/pull_result.json | jq .documentRoot| tr -d '"')
 
 rm -rf ./httpd/conffile
-scp -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP}:${conffile} ./httpd/conffile
+scp -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP}:${conffile} ./httpd/httpd.conf
 rm -rf ./httpd/documentRoot
 mkdir ./httpd/documentRoot
 scp -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP}:${documentRoot}/* ./httpd/documentRoot/
