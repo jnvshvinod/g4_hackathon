@@ -4,7 +4,7 @@ MAINTAINER G4
 
 RUN yum -y install tomcat8
 
-COPY ./conffile /usr/share/tomcat/conf/server.xml
+COPY ./server.xml /usr/share/tomcat/conf/
 
 COPY ./webapps/* /var/lib/tomcat/webapps/
 
