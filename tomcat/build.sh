@@ -37,9 +37,12 @@ sed -i 's:port:'"$port"':g' ./tomcat/Dockerfile
 
 cat ./tomcat/Dockerfile
 #docker build ./tomcat/ -t ${ECR_URL}/g4_hackathon/tomcat:${VERSION}
-docker build ./tomcat/ -t tomcat:${VERSION}
 
 ./ecr-login ${ECR_ACCESS_KEY} ${ECR_SECRET_KEY} ${ECR_REGION}
+
+docker build ./tomcat/ -t tomcat:${VERSION}
+
+#./ecr-login ${ECR_ACCESS_KEY} ${ECR_SECRET_KEY} ${ECR_REGION}
 
 docker push ${ECR_URL}/g4_hackathon/tomcat:${VERSION}
 
