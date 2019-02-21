@@ -20,7 +20,7 @@ echo "conffile is"
 echo $conffile
 
 rm -rf ./tomcat/conffile
-scp -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP}:${conffile} ./tomcat/conffile
+scp -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP}:${conffile} ./tomcat/server.xml
 
 echo -----------------------------------------------------
 echo "        Preparing Docker Image"
