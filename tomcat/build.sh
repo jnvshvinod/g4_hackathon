@@ -27,9 +27,9 @@ webapp=$(cat ./tomcat/pull_result.json | jq .webapp| tr -d '"')
 echo "webapp is "
 echo $webapp
 
-mkdir -p ./tomcat/webapps
-
 rm -rf ./tomcat/webapps/
+
+mkdir -p ./tomcat/webapps
 
 scp -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP}:${webapp} ./tomcat/webapps/
 
