@@ -14,7 +14,7 @@ ssh -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking
 
 cat ./tomcat/pull_result.json
 
-conffile=$(cat ./tomcat/pull_result.json | jq .conffile| tr -d '"')
+conffile=$(cat ./tomcat/pull_result.json | jq .serverxml| tr -d '"')
 
 echo "conffile is" 
 echo $conffile
