@@ -4,7 +4,7 @@ MAINTAINER G4
 
 RUN yum -y install httpd
 
-COPY ./conffile /etc/httpd/conf/
+COPY ./httpd.conf /etc/httpd/conf/
 
 COPY ./documentRoot/*  destination_documentRoot
 
