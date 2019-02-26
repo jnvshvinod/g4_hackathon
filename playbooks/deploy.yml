@@ -53,8 +53,9 @@
         image: "{{ image }}"
         pull: true
         state: started
-        ports:
-         - "{{ ports }}"
+        network_mode: host
+#        ports:
+#         - "{{ ports }}"
 
     - name: Docker logout
       command: docker logout "{{ ecr_url  }}"
