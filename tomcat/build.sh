@@ -24,11 +24,7 @@ scp -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking
 
 webapp=$(cat ./tomcat/pull_result.json | jq .webapp| tr -d '"')
 
-echo "webapp is "
-echo $webapp
-
 rm -rf ./tomcat/webapps/
-
 mkdir -p ./tomcat/webapps
 
 scp -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP}:${webapp} ./tomcat/webapps/
@@ -41,20 +37,10 @@ port=$(cat ./tomcat/pull_result.json | jq .port| tr -d '"')
 sed -i 's:port:'"$port"':g' ./tomcat/Dockerfile
 
 cat ./tomcat/Dockerfile
-#docker build ./tomcat/ -t ${ECR_URL}/g4_hackathon/tomcat:${VERSION}
 
-#./ecr-login ${ECR_ACCESS_KEY} ${ECR_SECRET_KEY} ${ECR_REGION}
-
-#docker build ./tomcat/ -t tomcat:${VERSION}
 docker build ./tomcat/ -t ${ECR_URL}/g4_hackathon/tomcat:${VERSION}
 
 ./ecr-login ${AWS_ACCESS_KEY_ID} ${AWS_SECRET_ACCESS_KEY} ${ECR_REGION}
-
-echo "keys are"
-
-echo ${ECR_ACCESS_KEY}
-
-echo ${ECR_SECRET_KEY}
 
 docker push ${ECR_URL}/g4_hackathon/tomcat:${VERSION}
 
