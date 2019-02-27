@@ -9,7 +9,8 @@ echo "Stopping tomcat service"
 systemctl stop tomcat
 
 echo "Removing old artifacts"
-rm -rf /usr/share/tomcat/webapps/Hackathon/Hackathon.war
+rm -rf /usr/share/tomcat/webapps/Hackathon
+rm -rf /usr/share/tomcat/webapps/Hackathon.war
 
 echo "Copy new artifacts"
 cp ./temp/Hackathon.war /usr/share/tomcat/webapps/
