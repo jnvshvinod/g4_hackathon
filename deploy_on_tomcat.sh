@@ -3,7 +3,7 @@ echo "Removing old temp artifacts"
 rm -rf ./temp/Hackathon.war
 
 echo "Downloading new artifacts"
-wget http://ec2-13-234-48-118.ap-south-1.compute.amazonaws.com:8081/artifactory/list/builds/war/${1}/Hackathon.war ./temp/
+wget http://ec2-13-234-48-118.ap-south-1.compute.amazonaws.com:8081/artifactory/list/builds/war/${1}/Hackathon.war -P ./temp/
 
 echo "Stopping tomcat service"
 systemctl stop tomcat
