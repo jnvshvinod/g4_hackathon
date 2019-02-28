@@ -8,9 +8,10 @@ echo -----------------------------------------------------
 echo "        Pulling Configurations and Artifacts"
 echo -----------------------------------------------------
 
-
-scp -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking=no ./tomcat/pull.sh ${Username}@${Server_IP}:/tmp/tomcat_pull.sh
-ssh -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP} /tmp/tomcat_pull.sh > ./tomcat/pull_result.json
+ssh -i /opt/jenkinsfiles/tmp/bootstrap_key_${Username}_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP} "rm -rf temp"
+ssh -i /opt/jenkinsfiles/tmp/bootstrap_key_${Username}_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP} "mkdir temp"
+scp -i /opt/jenkinsfiles/tmp/bootstrap_key_${Username}_${Server_IP} -o StrictHostKeyChecking=no ./tomcat/pull.sh ${Username}@${Server_IP}:temp/tomcat_pull.sh
+ssh -i /opt/jenkinsfiles/tmp/bootstrap_key_${Username}_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP} temp/tomcat_pull.sh > ./tomcat/pull_result.json
 
 cat ./tomcat/pull_result.json
 
@@ -45,3 +46,5 @@ docker build ./tomcat/ -t ${ECR_URL}/g4_hackathon/tomcat:${VERSION}
 docker push ${ECR_URL}/g4_hackathon/tomcat:${VERSION}
 
 docker logout https://${ECR_URL}
+
+ssh -i /opt/jenkinsfiles/tmp/bootstrap_key_${Username}_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP} "rm -rf temp"
