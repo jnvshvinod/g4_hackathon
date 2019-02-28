@@ -16,19 +16,15 @@ ssh -i /opt/jenkinsfiles/tmp/bootstrap_key_${Username}_${Server_IP} -o StrictHos
 cat ./tomcat/pull_result.json
 
 conffile=$(cat ./tomcat/pull_result.json | jq .serverxml| tr -d '"')
-
-echo "conffile is" 
-echo $conffile
-
 rm -rf ./tomcat/server.xml
-scp -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP}:${conffile} ./tomcat/server.xml
+scp -i /opt/jenkinsfiles/tmp/bootstrap_key_${Username}_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP}:${conffile} ./tomcat/server.xml
 
 webapp=$(cat ./tomcat/pull_result.json | jq .webapp| tr -d '"')
 
 rm -rf ./tomcat/webapps/
 mkdir -p ./tomcat/webapps
 
-scp -i /opt/jenkinsfiles/tmp/bootstrap_key_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP}:${webapp}/* ./tomcat/webapps/
+scp -i /opt/jenkinsfiles/tmp/bootstrap_key_${Username}_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP}:${webapp}/* ./tomcat/webapps/
 
 echo -----------------------------------------------------
 echo "        Preparing Docker Image"
