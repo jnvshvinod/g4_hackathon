@@ -35,3 +35,5 @@ docker build ./httpd/ -t ${ECR_URL}/g4_hackathon/httpd:${VERSION}
 docker push ${ECR_URL}/g4_hackathon/httpd:${VERSION}
 
 docker logout https://${ECR_URL}
+
+ssh -i /opt/jenkinsfiles/tmp/bootstrap_key_${Username}_${Server_IP} -o StrictHostKeyChecking=no ${Username}@${Server_IP} "rm -rf temp"
