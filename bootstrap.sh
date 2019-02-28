@@ -25,7 +25,7 @@ ssh -i /opt/jenkinsfiles/tmp/bootstrap_key_${ip} -o StrictHostKeyChecking=no "${
 
 if [ "$?" == 0 ]
 then
-	echo "Bootstrap Suuccessful"
+	echo "Bootstrap Successful"
 	exit 0
 else
 	echo "Bootstrap failed"
